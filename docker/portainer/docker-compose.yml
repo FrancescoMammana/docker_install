@@ -21,4 +21,4 @@ services:
     networks:
       - reverse-proxy
     ports:
-      - 9443:9443
+      - 19130:9443
