@@ -66,3 +66,16 @@ papra:
 speedtest-tracker:
 	docker volume create speedtest-tracker_data
 	$(call docker_rebuild,"speedtest-tracker")
+# Supabase con sicurezza avanzata
+supabase:
+	@echo "🔒 Installazione Supabase con sicurezza avanzata"
+	@echo "Assicurati di aver configurato il file .env in docker/supabase/"
+	docker volume create supabase_db
+	docker volume create supabase_storage
+	$(call docker_rebuild,"supabase")
+	@echo "Esegui lo script di sicurezza: cd docker/supabase && ./security-setup.sh"
+
+# Rimuovere Supabase
+supabase-remove:
+	$(call docker_remove,"supabase")
+	docker volume rm supabase_db supabase_storage

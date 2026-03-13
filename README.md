@@ -34,12 +34,26 @@ Tramite questo repository, con il Makefile e i file YAML presenti nella cartella
     - 19131 (Nginx)
 12. Accedere a Nginx all'indirizzo `http://<ip>:19131` (usare l'indirizzo IP e la porta scelti)
 
+### Installazione Supabase
+14. Eseguire `make supabase` (per installare Supabase)
+15. Nella macchina, dare accesso in ingresso alle porte:
+    - 19132 (Supabase Studio)
+    - 19133 (API Gateway)
+16. Configurare le variabili di ambiente:
+    ```bash
+    cd docker/supabase
+    cp .env.example .env
+    # Modificare con valori sicuri
+    ```
+17. Accedere a Supabase Studio all'indirizzo `http://<ip>:19132`
+18. Configurare il progetto, creare le tabelle e generare le API keys
+
 ### Configurazione DNS e SSL
-13. Su CloudNS creare:
+1. Su CloudNS creare:
     - Una zona (es. `fra3222`)
     - Un indirizzo di tipo A per l'indirizzo pubblico della macchina (es. `vps.fra3222.cloudns.it`)
     - Due indirizzi di tipo C per Nginx Proxy Manager e Portainer
-14. Su Nginx Proxy Manager creare due proxy host:
+2. Su Nginx Proxy Manager creare due proxy host:
     - Uno che punta a Nginx Proxy Manager stesso
     - L'altro che punta a Portainer
     - Inserire come domain name l'indirizzo C creato su CloudNS
@@ -57,4 +71,4 @@ Per tutti i container non presenti nel Makefile, sarà necessario:
 2. Aggiungere nella cartella `docker` la cartella del nuovo container con il suo file compose
 3. Eseguire `make <container_name>`
 4. Creare su CloudNS l'indirizzo di tipo C che deve puntare al nuovo container
-5. Creare su Nginx Proxy Manager il proxy host che punta all'indirizzo pubblico e la porta della macchina che contiene Docker e all'indirizzo C di CloudNS 
+5. Creare su Nginx Proxy Manager il proxy host che punta all'indirizzo pubblico e la porta della macchina che contiene Docker e all'indirizzo C di CloudNS

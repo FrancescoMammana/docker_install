@@ -1,0 +1,38 @@
+_format_version: "1.1"
+services:
+  - name: supabase-api
+    url: http://supabase-db:5432
+    routes:
+      - name: api
+        strip_path: true
+        paths:
+          - "/rest/v1"
+        plugins:
+          - cors
+          - rate-limiting:
+              window_size: 60s
+              limit: 1000
+  - name: supabase-auth
+    url: http://supabase-db:5432
+    routes:
+      - name: auth
+        strip_path: true
+        paths:
+          - "/auth/v1"
+        plugins:
+          - cors
+          - rate-limiting:
+              window_size: 60s
+              limit: 500
+  - name: supabase-studio
+    url: http://supabase-studio:3000
+    routes:
+      - name: studio
+        strip_path: true
+        paths:
+          - "/studio"
+        plugins:
+          - cors
+          - key-auth:
+              key_names: ["X-API-Key"]
+              hide_credentials: true
