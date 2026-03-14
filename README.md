@@ -61,7 +61,7 @@ Tramite questo repository, con il Makefile e i file YAML presenti nella cartella
     - Aggiungere in SSL l'opzione "Force SSL" e creare il certificato
 
 ### Accesso Finale
-A questo punto si potrà accedere a Nginx con l'indirizzo `nginx.fra3222.cloudns.it` e similmente a Portainer con lo stesso meccanismo.
+A questo punto si potrà accedere a Nginx con l'indirizzo `nginx.fra3222.cloudns.it` e similmente a tutti gli altri container con lo stesso meccanismo.
 
 ## Aggiunta di Nuovi Container
 
