@@ -31,6 +31,9 @@ nginxpm:
 	docker volume create nginxpm_data
 	docker volume create nginxpm_letsencrypt
 	$(call docker_rebuild,"nginxpm")
+# AD Guard
+adguard:
+	$(call docker_rebuild,"adguard")
 # Gotify
 gotify:
 	docker volume create gotify_data
