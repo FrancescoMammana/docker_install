@@ -1,8 +1,8 @@
 services:
   adguardhome:
     image: adguard/adguardhome
-    container_name: adguardhome
-    hostname: adguardhome
+    container_name: adguard
+    hostname: adguard
     restart: unless-stopped
     volumes:
       - ./workdir:/opt/adguardhome/work
