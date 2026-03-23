@@ -19,24 +19,18 @@ endef
 # [execute: pull, rebuild]
 # $(call docker_rebuild_adguard,"adguard")
 define docker_rebuild_adguard
-	#0 Attiva il resolver di sistema
 	sudo systemctl start systemd-resolved && \
 
-	# 1. Scarica l'aggiornamento (Mentre AdGuard è ancora attivo e risolve i nomi)
 	docker compose -p $(1) -f docker/$(1)/docker-compose.yml pull && \
 
-	# 2. Spegni il vecchio container
 	docker compose -p $(1) -f docker/$(1)/docker-compose.yml down && \
 
-	# 3. ASSICURATI che il resolver di sistema sia spento (Libera la porta 53)
 	sudo systemctl stop systemd-resolved && \
 	sudo systemctl disable systemd-resolved && \
 	
-	# 4. Pulisci e ricostruisci
 	docker compose -p $(1) -f docker/$(1)/docker-compose.yml rm -f && \
 	docker compose -p $(1) -f docker/$(1)/docker-compose.yml build --no-cache && \
 
-	# 5. Fai partire il nuovo AdGuard
 	docker compose -p $(1) -f docker/$(1)/docker-compose.yml up -d
 endef
 # Initialization
